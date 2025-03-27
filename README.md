@@ -7,3 +7,9 @@ GIT & GITHUB
     - METHOD 2: git add . (For all files)
 - git status (For viewing all the files added in the staging area)
 - git commit -m "<msg>"
+- git log (To see all changes committed)
+    - git log --oneline ("oneline" is a flag. It shows each commit in one line)
+- git branch (shows us the current branch)
+    - git branch <branch-name> (creates a new branch)
+    - git switch <branch-name> (to switch to the next branch)
+    - git switch -c <branch-name> (to create a new branch and switching to that branch)
