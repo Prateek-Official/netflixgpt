@@ -1,0 +1,30 @@
+{
+  "name": "netflixgpt",
+  "version": "1.0.0",
+  "description": "NetflixGPT project",
+  "keywords": [
+    "reactjs"
+  ],
+  "homepage": "https://github.com/Prateek-Official/netflixgpt#readme",
+  "bugs": {
+    "url": "https://github.com/Prateek-Official/netflixgpt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prateek-Official/netflixgpt.git"
+  },
+  "license": "ISC",
+  "author": "Prateek Verma",
+  "type": "commonjs",
+  "scripts": {
+    "start": "index.html",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.14.2"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
