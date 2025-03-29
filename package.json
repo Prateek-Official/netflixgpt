@@ -1,10 +1,7 @@
 {
   "name": "netflixgpt",
   "version": "1.0.0",
-  "description": "NetflixGPT project",
-  "keywords": [
-    "reactjs"
-  ],
+  "description": "\"Netflix GPT Project",
   "homepage": "https://github.com/Prateek-Official/netflixgpt#readme",
   "bugs": {
     "url": "https://github.com/Prateek-Official/netflixgpt/issues"
@@ -17,14 +14,16 @@
   "author": "Prateek Verma",
   "type": "commonjs",
   "scripts": {
-    "start": "index.html",
+    "start": "parcel index.html",
     "test": "jest"
   },
   "devDependencies": {
-    "parcel": "^2.14.2"
+    "parcel": "^2.14.3"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@tailwindcss/postcss": "^4.0.17",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.0.17"
   }
 }

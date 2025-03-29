@@ -17,4 +17,25 @@
 
 
 
-#This README File is for Netflix GPT
+# This README File is for Netflix GPT
+
+# Netflix GPT
+- Install parcel (steps present in notes)
+- Configured Tailwind CSS in our project
+
+
+# Features in this project
+- Login/Signup Page
+    - Sign In/ Sign Up form
+    - redirect to browse page
+
+- Browse(home) page (after logged in)
+    - Header
+    - Main movie
+        - Trailer In Background
+        - Title and Description
+        - Movie Lists * N
+
+- Netflix GPT
+    - Search Bar
+    - Movie Suggestions
