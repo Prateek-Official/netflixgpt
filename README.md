@@ -39,3 +39,12 @@
 - Netflix GPT
     - Search Bar
     - Movie Suggestions
+
+
+
+# Procedure followed
+- Built Header (having logo)
+- Built Sign In Page
+- Built Sign Up Page Using the same Sign In Page using toggling with the help of useState
+- Built Form Validation
+- 

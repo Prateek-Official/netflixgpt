@@ -1,11 +1,78 @@
 import Header from "./Header";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { checkValidData } from "../utils/validate";
+import { auth } from "../utils/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 function Login() {
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const clickHandler = () => {
+  const email = useRef(null);
+  const password = useRef(null);
+  const name = useRef(null);
+
+  //   console.log(name);
+
+  const handleValidation = () => {
+    //Validation logic inside "validate.js" file
+    const message = checkValidData(
+      email.current.value,
+      password.current.value,
+      name
+    );
+    setErrorMessage(message);
+
+    //Sign up / sign-in
+    if (message === null) {
+      //create a new user / sign in
+      if (!isSignInForm) {
+        //sign up logic
+        createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            // Sign up logic
+            const user = userCredential.user;
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            console.log("errorCode - ", errorCode);
+            console.log("errorMessage - ", errorMessage);
+            setErrorMessage(errorCode + "-" + errorMessage);
+          });
+      } else {
+        //Sign in logic
+        signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log(user)
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorMessage(errorCode + " - " + errorMessage);
+          });
+      }
+    }
+  };
+
+  const toggleButton = () => {
     setIsSignInForm(!isSignInForm);
+    setErrorMessage(null);
   };
 
   return (
@@ -17,7 +84,11 @@ function Login() {
           alt="background-img"
         />
       </div>
-      <form className="absolute p-12 bg-black w-4/12 my-24 mx-auto left-0 right-0 flex flex-col text-white gap-2 opacity-95 rounded-lg">
+
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="absolute p-12 bg-black w-4/12 my-24 mx-auto left-0 right-0 flex flex-col text-white gap-2 opacity-95 rounded-lg"
+      >
         <h1 className="text-3xl font-bold">
           {"Sign " + (isSignInForm === true ? "In" : "Up")}
         </h1>
@@ -26,6 +97,7 @@ function Login() {
           {!isSignInForm ? (
             <>
               <input
+                ref={name}
                 type="text"
                 placeholder="Full Name"
                 className="p-2 border bg-inherit rounded-sm"
@@ -33,19 +105,26 @@ function Login() {
             </>
           ) : null}
           <input
+            ref={email}
             type="text"
             placeholder="Email or mobile number"
             className="p-2 border bg-inherit rounded-sm mt-4"
           />
 
           <input
+            ref={password}
             type="password"
             placeholder="Password"
             className="p-2 border bg-inherit rounded-sm mt-4"
           />
         </div>
 
-        <button className="cursor-pointer bg-red-700 rounded-sm hover:bg-red-800 py-2">
+        <p className="text-red-500 mb-1 font-bold">{errorMessage}</p>
+
+        <button
+          className="cursor-pointer bg-red-700 rounded-sm hover:bg-red-800 py-2"
+          onClick={handleValidation}
+        >
           {"Sign-" + (isSignInForm === true ? "In" : "Up")}
         </button>
 
@@ -62,7 +141,7 @@ function Login() {
           {isSignInForm ? "New to Netflix?" : "Already registered?"}&nbsp;
           <span
             className="text-white hover:border-b cursor-pointer"
-            onClick={clickHandler}
+            onClick={toggleButton}
           >
             Sign {isSignInForm ? "up" : "in"} now.
           </span>
